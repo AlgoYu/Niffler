@@ -18,7 +18,8 @@ public class Main {
 //        List<Token> analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test1.n");
 //        List<Token> analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test2.n");
 //        List<Token> analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test3.n");
-        List<Token> analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test4.n");
+//        List<Token> analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test4.n");
+        List<Token> analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test5.n");
 
         String json = gson.toJson(analysis);
         System.out.println(json);

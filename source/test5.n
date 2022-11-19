@@ -1,0 +1,10 @@
+// try catch
+void main(){
+    try{
+        // do something
+    }catch(Exception e){
+        // do something
+    }finally{
+        // do something
+    }
+}
