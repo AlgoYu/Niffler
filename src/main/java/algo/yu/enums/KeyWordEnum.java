@@ -12,7 +12,7 @@ public enum KeyWordEnum {
     BYTE("byte"), SHORT("short"), INT("int"), LONG("long"),
     FLOAT("float"), DOUBLE("double"),
     STRING("string"),
-    IF("if"), ELSE("else"), SWITCH("switch"), CASE("case"),
+    IF("if"), ELSE("else"), SWITCH("switch"), CASE("case"), DEFAULT("default"),
     FOR("for"), BREAK("break"),
     MAIN("main"), VOID("void"), FUNCTION("func"), RETURN("return");
 
