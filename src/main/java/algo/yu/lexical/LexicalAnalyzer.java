@@ -1,5 +1,6 @@
 package algo.yu.lexical;
 
+import algo.yu.enums.LiteralEnum;
 import algo.yu.enums.OperatorEnum;
 import algo.yu.enums.SeparatorEnum;
 import algo.yu.enums.StateEnum;
@@ -25,6 +26,7 @@ public class LexicalAnalyzer {
             putAll(KeyWordEnum.getKeyWordTokenMap());
             putAll(OperatorEnum.getSeparatorTokenMap());
             putAll(SeparatorEnum.getSeparatorTokenMap());
+            putAll(LiteralEnum.getLiteralTokenMap());
         }
     };
     // 状态机
@@ -99,7 +101,7 @@ public class LexicalAnalyzer {
                     if (Character.isLetterOrDigit(ch)) {
                         break;
                     }
-                    result.add(generateElement(sentence.getRow(), sb, keywordMap.getOrDefault(sb.toString(), TokenTypeEnum.IDENTIFIER)));
+                    result.add(generateElement(sentence.getRow(), sb, keywordMap.getOrDefault(sb.toString().toLowerCase(), TokenTypeEnum.IDENTIFIER)));
                     if (isOperator(ch)) {
                         state = StateEnum.OPERATOR;
                     } else if (isSeparator(ch)) {
