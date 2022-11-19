@@ -21,7 +21,7 @@ public class Main {
 //      analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test3.n");
 //      analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test4.n");
 //      analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test5.n");
-//      analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test6.n");
+      analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test6.n");
 
         String json = gson.toJson(analysis);
         System.out.println(json);

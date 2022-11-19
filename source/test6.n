@@ -1,9 +1,9 @@
-// 面向对象,封装,继承,多态,泛型
+// 模板,可以当做结构体,类,抽象类,接口使用,能够实现面向对象,封装,继承,多态,泛型.
 void main(){
     Human human = new Man<bool>();
 }
 // 人类结构体
-struct Human{
+template Human{
     // export代表外面可以直接 human.name 这样操作数据
     export string name;
     export int age;
@@ -15,7 +15,7 @@ struct Human{
 }
 
 // 男结构体继承人类结构体，附加泛型数据
-struct Man<T> extends human{
+template Man<T> extends human{
     // 父结构已经有的同名属性，按父结构的开放程度，类型不一致会报错。
     string name;
     int age;
