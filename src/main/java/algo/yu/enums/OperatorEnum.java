@@ -5,7 +5,8 @@ import java.util.Map;
 
 public enum OperatorEnum {
     ADD("+"), SUBTRACT("-"), MULTIPLY("*"), DIVIDE("/"),
-    ASSIGN("="), EQUALS("==");
+    GREATER(">"), LESS("<"), ASSIGN("="),
+    AND("&"), OR("|"), INVERT("!");
 
     private final String symbol;
 
@@ -19,5 +20,15 @@ public enum OperatorEnum {
             map.put(operatorEnum.symbol, TokenTypeEnum.OPERATOR);
         }
         return map;
+    }
+
+    public static boolean isOperator(char ch) {
+        String symbol = String.valueOf(ch);
+        for (OperatorEnum operatorEnum : values()) {
+            if (operatorEnum.symbol.equals(symbol)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -22,4 +22,14 @@ public enum SeparatorEnum {
         }
         return map;
     }
+
+    public static boolean isSeparator(char ch) {
+        String symbol = String.valueOf(ch);
+        for (SeparatorEnum separatorEnum : values()) {
+            if (separatorEnum.symbol.equals(symbol)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

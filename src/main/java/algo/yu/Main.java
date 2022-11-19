@@ -15,11 +15,13 @@ public class Main {
         Gson gson = new GsonBuilder().disableHtmlEscaping().create();
 
         LexicalAnalyzer lexicalAnalyzer = new LexicalAnalyzer();
-//        List<Token> analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test1.n");
-//        List<Token> analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test2.n");
-//        List<Token> analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test3.n");
-//        List<Token> analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test4.n");
-        List<Token> analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test5.n");
+        List<Token> analysis = null;
+//      analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test1.n");
+//      analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test2.n");
+//      analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test3.n");
+//      analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test4.n");
+//      analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test5.n");
+//      analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test6.n");
 
         String json = gson.toJson(analysis);
         System.out.println(json);

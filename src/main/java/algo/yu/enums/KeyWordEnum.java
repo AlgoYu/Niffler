@@ -15,7 +15,9 @@ public enum KeyWordEnum {
     IF("if"), ELSE("else"), SWITCH("switch"), CASE("case"), DEFAULT("default"),
     FOR("for"), BREAK("break"),
     MAIN("main"), VOID("void"), FUNCTION("func"), RETURN("return"),
-    TRY("try"), CATCH("catch"), FINALLY("finally");
+    TRY("try"), CATCH("catch"), FINALLY("finally"),
+    NEW("new"), STRUCT("struct"), EXTENDS("extends"),
+    IMPORT("import"), EXPORT("export");
 
     private final String symbol;
 

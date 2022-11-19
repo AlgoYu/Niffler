@@ -88,9 +88,9 @@ public class LexicalAnalyzer {
                         state = StateEnum.NUMBER;
                     } else if (ch == '"') {
                         state = StateEnum.STRING;
-                    } else if (isSeparator(ch)) {
+                    } else if (SeparatorEnum.isSeparator(ch)) {
                         state = StateEnum.SEPARATOR;
-                    } else if (isOperator(ch)) {
+                    } else if (OperatorEnum.isOperator(ch)) {
                         state = StateEnum.OPERATOR;
                     } else {
                         state = StateEnum.INVALID;
@@ -102,9 +102,9 @@ public class LexicalAnalyzer {
                         break;
                     }
                     result.add(generateElement(sentence.getRow(), sb, keywordMap.getOrDefault(sb.toString().toLowerCase(), TokenTypeEnum.IDENTIFIER)));
-                    if (isOperator(ch)) {
+                    if (OperatorEnum.isOperator(ch)) {
                         state = StateEnum.OPERATOR;
-                    } else if (isSeparator(ch)) {
+                    } else if (SeparatorEnum.isSeparator(ch)) {
                         state = StateEnum.SEPARATOR;
                     } else {
                         state = StateEnum.INVALID;
@@ -116,11 +116,11 @@ public class LexicalAnalyzer {
                         break;
                     }
                     result.add(generateElement(sentence.getRow(), sb, TokenTypeEnum.LITERAL));
-                    if (isSeparator(ch)) {
+                    if (SeparatorEnum.isSeparator(ch)) {
                         state = StateEnum.SEPARATOR;
                     } else if (Character.isLetter(ch)) {
                         state = StateEnum.IDENTIFIER;
-                    } else if (isOperator(ch)) {
+                    } else if (OperatorEnum.isOperator(ch)) {
                         state = StateEnum.OPERATOR;
                     } else {
                         state = StateEnum.INVALID;
@@ -132,7 +132,7 @@ public class LexicalAnalyzer {
                 // 分隔符
                 case SEPARATOR:
                     result.add(generateElement(sentence.getRow(), sb, TokenTypeEnum.SEPARATOR));
-                    if (isSeparator(ch)) {
+                    if (SeparatorEnum.isSeparator(ch)) {
                         break;
                     }
                     if (Character.isLetter(ch)) {
@@ -148,12 +148,15 @@ public class LexicalAnalyzer {
                 // 操作符
                 case OPERATOR:
                     result.add(generateElement(sentence.getRow(), sb, TokenTypeEnum.OPERATOR));
-                    if (isOperator(ch)) {
+                    if (OperatorEnum.isOperator(ch)) {
                         break;
                     }
-                    if (Character.isDigit(ch)) {
+                    if (Character.isLetter(ch)) {
+                        state = StateEnum.IDENTIFIER;
+                        break;
+                    } else if (Character.isDigit(ch)) {
                         state = StateEnum.NUMBER;
-                    } else if (isSeparator(ch)) {
+                    } else if (SeparatorEnum.isSeparator(ch)) {
                         state = StateEnum.SEPARATOR;
                     } else {
                         state = StateEnum.INVALID;
@@ -211,14 +214,6 @@ public class LexicalAnalyzer {
         }
         String[] strings = new String[result.size()];
         return result.toArray(strings);
-    }
-
-    private boolean isSeparator(char ch) {
-        return ch == ';' || ch == ',' || ch == '.' || ch == '(' || ch == ')' || ch == '{' || ch == '}' || ch == '[' || ch == ']';
-    }
-
-    private boolean isOperator(char ch) {
-        return ch == '=' || ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '>' || ch == '<';
     }
 
     private Token generateElement(int line, StringBuilder sb, TokenTypeEnum tokenTypeEnum) {

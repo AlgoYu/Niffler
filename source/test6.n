@@ -1,0 +1,44 @@
+// 面向对象,封装,继承,多态,泛型
+void main(){
+    Human human = new Man<bool>();
+}
+// 人类结构体
+struct Human{
+    // export代表外面可以直接 human.name 这样操作数据
+    export string name;
+    export int age;
+    export bool gender;
+    // 函数
+    export bool isYoung(){
+        return age >= 0 && age <= 18;
+    }
+}
+
+// 男结构体继承人类结构体，附加泛型数据
+struct Man<T> extends human{
+    // 父结构已经有的同名属性，按父结构的开放程度，类型不一致会报错。
+    string name;
+    int age;
+    bool gender;
+    // fu
+    T data;
+
+    // 以结构体名称的函数是构造函数，无需写返回值，返回值就是一个初始化的结构体实例，new关键字就是调用构造函数。
+    // 若不加export，则代表构造函数私有，无法实例化，若无构造函数函数，默认会有一个无参构造函数。
+    Man(){
+    }
+
+    // 在结构体内的函数是可以调用私有函数的，这也可以实现有参构造函数
+    export Man(string name){
+        Man man = Man();
+        man.name = name;
+        return man;
+    }
+
+    // 也可以这样创建
+    export Man create(string name){
+        Man man = Man();
+        man.name = name;
+        return man;
+    }
+}

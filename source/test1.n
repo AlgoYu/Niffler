@@ -6,4 +6,6 @@ void main(){
     float minusPi = -3.141597;
     bool c = false;
     string = "This is a test.";
+    // 数组
+    int[] a = new int[]{1,2,3,4,5};
 }
