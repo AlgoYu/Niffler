@@ -151,6 +151,8 @@ public class LexicalAnalyzer {
                     }
                     if (Character.isDigit(ch)) {
                         state = StateEnum.NUMBER;
+                    } else if (isSeparator(ch)) {
+                        state = StateEnum.SEPARATOR;
                     } else {
                         state = StateEnum.INVALID;
                     }
