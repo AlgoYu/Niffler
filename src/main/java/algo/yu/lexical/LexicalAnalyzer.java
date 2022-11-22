@@ -3,7 +3,7 @@ package algo.yu.lexical;
 import algo.yu.enums.LiteralEnum;
 import algo.yu.enums.OperatorEnum;
 import algo.yu.enums.SeparatorEnum;
-import algo.yu.enums.StateEnum;
+import algo.yu.enums.LexicalStateEnum;
 import algo.yu.model.Token;
 import algo.yu.enums.KeyWordEnum;
 import algo.yu.model.Sentence;
@@ -30,13 +30,13 @@ public class LexicalAnalyzer {
         }
     };
     // 状态机
-    private static final Map<StateEnum, TokenTypeEnum> stateMap = new HashMap<>() {
+    private static final Map<LexicalStateEnum, TokenTypeEnum> stateMap = new HashMap<>() {
         {
-            put(StateEnum.IDENTIFIER, TokenTypeEnum.IDENTIFIER);
-            put(StateEnum.NUMBER, TokenTypeEnum.LITERAL);
-            put(StateEnum.STRING, TokenTypeEnum.LITERAL);
-            put(StateEnum.SEPARATOR, TokenTypeEnum.SEPARATOR);
-            put(StateEnum.OPERATOR, TokenTypeEnum.OPERATOR);
+            put(LexicalStateEnum.IDENTIFIER, TokenTypeEnum.IDENTIFIER);
+            put(LexicalStateEnum.NUMBER, TokenTypeEnum.LITERAL);
+            put(LexicalStateEnum.STRING, TokenTypeEnum.LITERAL);
+            put(LexicalStateEnum.SEPARATOR, TokenTypeEnum.SEPARATOR);
+            put(LexicalStateEnum.OPERATOR, TokenTypeEnum.OPERATOR);
         }
     };
 
@@ -76,24 +76,24 @@ public class LexicalAnalyzer {
 
     private List<Token> automata(Sentence sentence, String string) {
         List<Token> result = new ArrayList<>();
-        StateEnum state = StateEnum.INIT;
+        LexicalStateEnum state = LexicalStateEnum.INIT;
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < string.length(); i++) {
             char ch = string.charAt(i);
             switch (state) {
                 case INIT:
                     if (Character.isLetter(ch)) {
-                        state = StateEnum.IDENTIFIER;
+                        state = LexicalStateEnum.IDENTIFIER;
                     } else if (Character.isDigit(ch)) {
-                        state = StateEnum.NUMBER;
+                        state = LexicalStateEnum.NUMBER;
                     } else if (ch == '"') {
-                        state = StateEnum.STRING;
+                        state = LexicalStateEnum.STRING;
                     } else if (SeparatorEnum.isSeparator(ch)) {
-                        state = StateEnum.SEPARATOR;
+                        state = LexicalStateEnum.SEPARATOR;
                     } else if (OperatorEnum.isOperator(ch)) {
-                        state = StateEnum.OPERATOR;
+                        state = LexicalStateEnum.OPERATOR;
                     } else {
-                        state = StateEnum.INVALID;
+                        state = LexicalStateEnum.INVALID;
                     }
                     break;
                 // 标识符
@@ -103,11 +103,11 @@ public class LexicalAnalyzer {
                     }
                     result.add(generateElement(sentence.getRow(), sb, keywordMap.getOrDefault(sb.toString().toLowerCase(), TokenTypeEnum.IDENTIFIER)));
                     if (OperatorEnum.isOperator(ch)) {
-                        state = StateEnum.OPERATOR;
+                        state = LexicalStateEnum.OPERATOR;
                     } else if (SeparatorEnum.isSeparator(ch)) {
-                        state = StateEnum.SEPARATOR;
+                        state = LexicalStateEnum.SEPARATOR;
                     } else {
-                        state = StateEnum.INVALID;
+                        state = LexicalStateEnum.INVALID;
                     }
                     break;
                 // 数字
@@ -117,13 +117,13 @@ public class LexicalAnalyzer {
                     }
                     result.add(generateElement(sentence.getRow(), sb, TokenTypeEnum.LITERAL));
                     if (SeparatorEnum.isSeparator(ch)) {
-                        state = StateEnum.SEPARATOR;
+                        state = LexicalStateEnum.SEPARATOR;
                     } else if (Character.isLetter(ch)) {
-                        state = StateEnum.IDENTIFIER;
+                        state = LexicalStateEnum.IDENTIFIER;
                     } else if (OperatorEnum.isOperator(ch)) {
-                        state = StateEnum.OPERATOR;
+                        state = LexicalStateEnum.OPERATOR;
                     } else {
-                        state = StateEnum.INVALID;
+                        state = LexicalStateEnum.INVALID;
                     }
                     break;
                 // 字符串
@@ -136,13 +136,13 @@ public class LexicalAnalyzer {
                         break;
                     }
                     if (Character.isLetter(ch)) {
-                        state = StateEnum.IDENTIFIER;
+                        state = LexicalStateEnum.IDENTIFIER;
                         break;
                     } else if (Character.isDigit(ch)) {
-                        state = StateEnum.NUMBER;
+                        state = LexicalStateEnum.NUMBER;
                         break;
                     } else {
-                        state = StateEnum.INVALID;
+                        state = LexicalStateEnum.INVALID;
                     }
                     break;
                 // 操作符
@@ -152,26 +152,26 @@ public class LexicalAnalyzer {
                         break;
                     }
                     if (Character.isLetter(ch)) {
-                        state = StateEnum.IDENTIFIER;
+                        state = LexicalStateEnum.IDENTIFIER;
                         break;
                     } else if (Character.isDigit(ch)) {
-                        state = StateEnum.NUMBER;
+                        state = LexicalStateEnum.NUMBER;
                     } else if (SeparatorEnum.isSeparator(ch)) {
-                        state = StateEnum.SEPARATOR;
+                        state = LexicalStateEnum.SEPARATOR;
                     } else {
-                        state = StateEnum.INVALID;
+                        state = LexicalStateEnum.INVALID;
                     }
                     break;
                 case INVALID:
                     throw new RuntimeException(String.format("无法识别%d行字符%s", sentence.getRow(), ch));
                     // 无效
                 default:
-                    state = StateEnum.INVALID;
+                    state = LexicalStateEnum.INVALID;
                     break;
             }
             sb.append(ch);
         }
-        if (state != StateEnum.INVALID && state != StateEnum.INIT) {
+        if (state != LexicalStateEnum.INVALID && state != LexicalStateEnum.INIT) {
             TokenTypeEnum tokenTypeEnum = stateMap.get(state);
             if (tokenTypeEnum == null) {
                 throw new RuntimeException(String.format("无法识别%d行字符%s", sentence.getRow(), sb.toString()));

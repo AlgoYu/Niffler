@@ -1,5 +1,7 @@
 package algo.yu;
 
+import algo.yu.grammatical.ASTNode;
+import algo.yu.grammatical.SyntaxAnalyzer;
 import algo.yu.lexical.LexicalAnalyzer;
 import algo.yu.model.Token;
 import com.google.gson.Gson;
@@ -16,12 +18,15 @@ public class Main {
 
         LexicalAnalyzer lexicalAnalyzer = new LexicalAnalyzer();
         List<Token> analysis = null;
+        analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/segment1.n");
 //      analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test1.n");
 //      analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test2.n");
 //      analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test3.n");
 //      analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test4.n");
 //      analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test5.n");
-      analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test6.n");
+//      analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test6.n");
+        SyntaxAnalyzer syntaxAnalyzer = new SyntaxAnalyzer();
+        ASTNode astNode = syntaxAnalyzer.analysis(analysis);
 
         String json = gson.toJson(analysis);
         System.out.println(json);

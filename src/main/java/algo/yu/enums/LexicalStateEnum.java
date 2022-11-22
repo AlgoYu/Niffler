@@ -1,5 +1,5 @@
 package algo.yu.enums;
 
-public enum StateEnum {
+public enum LexicalStateEnum {
     INIT, INVALID, IDENTIFIER, NUMBER, STRING, SEPARATOR, OPERATOR;
 }

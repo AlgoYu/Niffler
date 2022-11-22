@@ -21,6 +21,10 @@ public enum KeyWordEnum {
 
     private final String symbol;
 
+    public String getSymbol() {
+        return symbol;
+    }
+
     KeyWordEnum(String symbol) {
         this.symbol = symbol;
     }

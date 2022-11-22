@@ -4,12 +4,12 @@ import algo.yu.enums.TokenTypeEnum;
 
 public class Token {
     private int line;
-    private TokenTypeEnum tokenTypeEnum;
+    private TokenTypeEnum type;
     private String value;
 
-    public Token(int line, TokenTypeEnum tokenTypeEnum, String value) {
+    public Token(int line, TokenTypeEnum type, String value) {
         this.line = line;
-        this.tokenTypeEnum = tokenTypeEnum;
+        this.type = type;
         this.value = value;
     }
 
@@ -21,12 +21,12 @@ public class Token {
         this.line = line;
     }
 
-    public TokenTypeEnum getToken() {
-        return tokenTypeEnum;
+    public TokenTypeEnum getType() {
+        return type;
     }
 
-    public void setToken(TokenTypeEnum tokenTypeEnum) {
-        this.tokenTypeEnum = tokenTypeEnum;
+    public void setType(TokenTypeEnum type) {
+        this.type = type;
     }
 
     public String getValue() {
