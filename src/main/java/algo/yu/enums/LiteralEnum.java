@@ -8,6 +8,10 @@ public enum LiteralEnum {
 
     private final String symbol;
 
+    public String getSymbol() {
+        return symbol;
+    }
+
     LiteralEnum(String symbol) {
         this.symbol = symbol;
     }

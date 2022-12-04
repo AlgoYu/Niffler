@@ -1,6 +1,6 @@
 package algo.yu;
 
-import algo.yu.grammatical.ASTNode;
+import algo.yu.grammatical.ast.AST;
 import algo.yu.grammatical.SyntaxAnalyzer;
 import algo.yu.lexical.LexicalAnalyzer;
 import algo.yu.model.Token;
@@ -26,9 +26,9 @@ public class Main {
 //      analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test5.n");
 //      analysis = lexicalAnalyzer.analysis("/Users/xiaoyu/JavaProject/Niffler/source/test6.n");
         SyntaxAnalyzer syntaxAnalyzer = new SyntaxAnalyzer();
-        ASTNode astNode = syntaxAnalyzer.analysis(analysis);
+        AST ast = syntaxAnalyzer.analysis(analysis);
 
-        String json = gson.toJson(analysis);
+        String json = gson.toJson(ast);
         System.out.println(json);
         Clipboard systemClipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         systemClipboard.setContents(new StringSelection(json), null);

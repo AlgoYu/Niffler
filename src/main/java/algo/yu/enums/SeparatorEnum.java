@@ -15,6 +15,10 @@ public enum SeparatorEnum {
         this.symbol = symbol;
     }
 
+    public String getSymbol() {
+        return symbol;
+    }
+
     public static Map<String, TokenTypeEnum> getSeparatorTokenMap() {
         Map<String, TokenTypeEnum> map = new HashMap<>();
         for (SeparatorEnum separatorEnum : values()) {
